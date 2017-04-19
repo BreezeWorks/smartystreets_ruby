@@ -8,3 +8,5 @@ _yardoc
 doc/
 
 tags
+.idea/.rakeTasks
+.idea/*
