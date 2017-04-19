@@ -10,6 +10,9 @@ require 'smartystreets/api_error'
 require 'smartystreets/street_address_api'
 require 'smartystreets/street_address_request'
 require 'smartystreets/street_address_response'
+require 'smartystreets/international_street_address_api'
+require 'smartystreets/international_street_address_request'
+require 'smartystreets/international_street_address_response'
 require 'smartystreets/zipcode_api'
 require 'smartystreets/zipcode_request'
 require 'smartystreets/zipcode_response'
@@ -85,6 +88,10 @@ module SmartyStreets
 
   def self.street_address_api_url
     defined?(@@api_url) ? @@api_url : 'https://api.smartystreets.com'
+  end
+
+  def self.international_street_address_api_url
+    defined?(@@api_url) ? @@api_url : 'https://international-street.api.smartystreets.com'
   end
 
   # Set the Zipcode API url.
