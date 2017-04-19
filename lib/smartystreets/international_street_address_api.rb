@@ -12,17 +12,15 @@ module SmartyStreets
 
     private_class_method :new
 
-    def self.call(*street_address_requests)
-      check_array_element_types(street_address_requests, InternationalStreetAddressRequest)
-      street_address_responses(HTTParty.post(request_url, request(*street_address_requests)))
+    def self.call(street_address_request)
+      street_address_responses(HTTParty.post(request_url, request(street_address_request)))
     end
 
     private
 
-    def self.request(*street_address_requests)
+    def self.request(street_address_request)
       {
-        :query => query,
-        :body => body(*street_address_requests),
+        :query => query.merge(street_address_request),
         :headers => headers
       }
     end
@@ -39,7 +37,8 @@ module SmartyStreets
     @@query = LazyLoader.create_lazy_loader do
       {
         'auth-id' => SmartyStreets.auth_id,
-        'auth-token' => SmartyStreets.auth_token
+        'auth-token' => SmartyStreets.auth_token,
+        'geocode' => true
       }
     end
 
